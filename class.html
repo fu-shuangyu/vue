@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue@2.6.14.js"></script>
+    <style>
+        .bd{
+            border: 5px solid #000;
+        }
+        .w{
+            width: 100px;
+            height: 100px;
+        }
+        .bg{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <button @click="toggle('bdf')">切换边框</button>
+        <button @click="toggle('bgf')">切换背景</button>
+        <button @click="toggle('wf')">切换宽高</button>
+        <hr>
+        <!-- 常规 -->
+        <div :class="bd + ' ' + w + ' ' + bg"></div>
+        <!-- 判断 -->
+        <div :class="[bdf ? bd: '', wf ? w: '', bgf ? bg : '']"></div>
+        <!-- 对象 -->
+        <div :class="{bd: bdf, w: wf, bg: bgf}"></div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                bd: 'bd',
+                w: 'w',
+                bg: 'bg',
+                bdf: true,
+                wf: true,
+                bgf: true
+            },
+            methods: {
+                toggle(attr){
+                    this[attr] = !this[attr];
+                },
+                // cbd(){
+                //     this.bdf = !this.bdf;
+                // },
+                // cbg(){
+                //     this.bgf = !this.bgf;
+                // },
+                // cw(){
+                //     this.wf = !this.wf;
+                // }
+            }
+        });
+    </script>
+</body>
+</html>
