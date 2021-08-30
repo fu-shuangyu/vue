@@ -5,9 +5,110 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
+    <script src="./lib/vue@2.6.14.js"></script>
 </head>
 <body>
-    
+    <div id="app">
+        <!-- <h1>{{msg}}</h1>
+        <h1 v-text="msg"></h1>
+        <h1 v-html="msg"></h1>
+        <h1 v-show="tag">123</h1>
+        <h1 v-bind:title="msg">hello</h1>
+        <img v-bind:src="src" alt="">
+        <img :src="src" alt="">
+
+        <div v-if="score>=90">优秀</div>
+        <div v-else-if="score<90&&score>=80">良好</div>
+        <div v-else-if="score<80&&score>=70">及格</div>
+        <div v-else="score<70">加油</div>
+
+        <button v-on:click="clickfn">点它！！！</button>
+        <button @click="clickfn">点它！！！</button>
+        <button @click="clickfn(msg)">点它！！！</button>
+        <h1 v-once>{{msg}}</h1>
+        <h1>{{msg}}</h1>
+        <button @click="update">更新</button>
+
+
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+            <li v-for="(item, index) in arr">{{index}}---{{item}}</li>
+            <li v-for="item in user">{{item}}</li>
+            <li v-for="(item, key) in user">{{key}}---{{item}}</li>
+            <li v-for="(item, key, index) in user">{{index}}--{{key}}---{{item}}</li>
+            <li v-for="(item, index) in num">{{index}}---{{item}}</li>
+            <li v-for="(item, index) in str">{{index}}---{{item}}</li>
+        </ul>
+ -->
+
+        <input type="text" name="name" placeholder="姓名">
+        <button @click="add">添加</button>
+        
+        <table width="500" border="1">
+            <thead>
+                <th></th>
+                <th>序号</th>
+                <th>姓名</th>
+            </thead>
+            <tr v-for="item in list" :key="item.id">
+                <td><input type="checkbox"></td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '<a>hello Vue</a>',
+                tag: false,
+                src: './img/banner3.png',
+                score: 88,
+                arr: ['react', 'vue', 'angular'],
+                user: {
+                    name: '杨洋',
+                    age: 33
+                },
+                num: 10,
+                str: 'hahahaha',
+                list: [{
+                    id: 5,
+                    name: '张三'
+                },{
+                    id: 4,
+                    name: '张三'
+                },{
+                    id: 3,
+                    name: '张三'
+                },{
+                    id: 2,
+                    name: '张三'
+                },{
+                    id: 1,
+                    name: '张三'
+                },]
+            },
+            methods:{
+                clickfn(a){
+                    console.log('点！！！', a);
+                },
+                update(){
+                    this.msg = '哈哈哈';
+                },
+                add(){
+                    const name = document.querySelector('input').value;
+                    const id = this.list[0].id + 1;
+                    const obj = {id, name};
+                    this.list.unshift(obj)
+
+                    document.querySelector('input').value = '';
+
+                }
+            }
+        });
+        console.log(vm);
+    </script>
 </body>
 </html>
